@@ -17,12 +17,6 @@ int tryPlace(std::string cord, char symbol) {
     // Return 2 means something is wrong with the coordinates.
     // Return 1 means that it couldn't place the symbol at the selected coord.
     // Return 0 means success.
-    if (cord.length() != 2)
-        return 2;
-    if (xCord != 0 && xCord != 1 && xCord != 2)
-        return 2;
-    if (yCord != 0 && yCord != 1 && yCord != 2)
-        return 2;
     if (unitArray[xCord][yCord].changeState(symbol))
         return 0;
     else
