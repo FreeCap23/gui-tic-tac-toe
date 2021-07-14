@@ -18,6 +18,7 @@ public:
     void Quit(wxCommandEvent& event);
     void Reset(wxCommandEvent& event);
     void Place(wxCommandEvent& event);
+    bool ShowWinBox();
     DECLARE_EVENT_TABLE()
 };
 

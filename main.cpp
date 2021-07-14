@@ -19,7 +19,6 @@ bool MainApp::OnInit()
         );
     MainWin->Show(true); // Render the window
     SetTopWindow(MainWin); // Set it as the main window
-    std::cout << "Initialized!\n";
     return true;
 }
 
@@ -67,6 +66,15 @@ void MainFrame::Reset(wxCommandEvent& event)
         }
 }
 
+bool MainFrame::ShowWinBox()
+{
+    int answer = wxMessageBox(
+        "Congratulations! You won!\nPlay again?",
+        "Congrats!", wxYES | wxNO
+        );
+    return (answer == wxYES) ? true : false;
+}
+
 void MainFrame::Place(wxCommandEvent& event)
 {
 
@@ -76,19 +84,22 @@ void MainFrame::Place(wxCommandEvent& event)
     {
         strID.insert(0, 1, '0'); // Format the position to work with tryPlace()
     }
-    std::cout << "Tried to place! " << strID << std::endl;
     if (tryPlace(strID, symbol) == 0) // 0 means the place was successful.
     {
-        std::cout << "Placed\n";
         // Symbol = O if it is X, otherwise = X
         // www.tutorialspoint.com/cplusplus/cpp_conditional_operator.htm
         symbol = (symbol == 'X') ? 'O' : 'X';
-    } 
-    else 
-    {
-        std::cout << "Not Placed\n";
     }
     // intID / 10 returns the first digit of the number
     // intID % 10 returns the last digit of the number
     unitButton[intID % 10][intID / 10]->SetLabel(symbol);
+    if(checkWin())
+    {
+        if (MainFrame::ShowWinBox())
+        {
+            MainFrame::Reset(event);
+        }
+        else
+            Close(true);
+    }
 }

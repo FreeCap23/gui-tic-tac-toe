@@ -22,7 +22,7 @@ int tryPlace(std::string cord, char symbol)
     else
         return 1;
 }
-
+/*
 void render()
 {
     // Render the grid
@@ -38,7 +38,7 @@ void render()
         }
     }
 }
-
+*/
 void resetGame()
 {
     for (int i = 0; i < 3; i++)
@@ -52,12 +52,11 @@ bool checkWin() {
     {
         for (int y = 1; y < 3; y++)
         {
-            if (unitArray[x][y].getState() == unitArray[x][y-1].getState() && unitArray[x][y].getState() != ' ')
+            if (unitArray[x][y].getState() == unitArray[x][y-1].getState()
+                && unitArray[x][y].getState() != ' ')
             {
                 if (unitArray[x][y+1].getState() == unitArray[x][y].getState())
                 {
-                    render();
-                    std::cout << unitArray[x][y].getState() << " won!";
                     return true;
                 }
             }
@@ -68,12 +67,11 @@ bool checkWin() {
     {
         for (int y = 0; y < 3; y++)
         {
-            if (unitArray[x][y].getState() == unitArray[x-1][y].getState() && unitArray[x][y].getState() != ' ')
+            if (unitArray[x][y].getState() == unitArray[x-1][y].getState()
+                && unitArray[x][y].getState() != ' ')
             {
                 if (unitArray[x+1][y].getState() == unitArray[x][y].getState())
                 {
-                    render();
-                    std::cout << unitArray[x][y].getState() << " won!";
                     return true;
                 }
             }
@@ -87,8 +85,6 @@ bool checkWin() {
         (unitArray[1][1].getState() == unitArray[2][0].getState()) &&
         (unitArray[2][0].getState() != ' ')) // This part checks for 2nd diagonal
         {
-        render();
-        std::cout << unitArray[1][1].getState() << " won!";
         return true;
     }
     // If there is no win, then every check will
@@ -96,6 +92,7 @@ bool checkWin() {
     return false;
 }
 
+/*
 void logic()
 {
     std::string position;
@@ -156,3 +153,4 @@ void logic()
             exit(0);
     }
 }
+*/
