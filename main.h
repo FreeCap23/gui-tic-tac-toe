@@ -13,7 +13,7 @@ class MainFrame: public wxFrame
 public:
     MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
     wxMenuBar *MainMenu;
-    wxButton *unitButton;
+    wxButton *unitButton[3][3];
 
     void Quit(wxCommandEvent& event);
     void Reset(wxCommandEvent& event);
