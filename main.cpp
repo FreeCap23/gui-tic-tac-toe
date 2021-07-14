@@ -54,13 +54,11 @@ MainFrame::MainFrame(
 
 void MainFrame::Quit(wxCommandEvent& event)
 {
-    std::cout << "Pressed Quit" << std::endl;
     Close(TRUE);
 }
 
 void MainFrame::Reset(wxCommandEvent& event)
 {
-    std::cout << "Pressed Reset" << std::endl;
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
             unitArray[i][j].reset();
@@ -71,16 +69,15 @@ void MainFrame::Place(wxCommandEvent& event)
     std::string id = std::to_string(event.GetId());
     if (id.length() == 1)
     {
-        id.insert(0, 1, '0');
+        id.insert(0, 1, '0'); // Format the position to work with tryPlace()
     }
     std::cout << "Tried to place! " << id << std::endl;
-    if (tryPlace(id, 'X') == 0)
+    if (tryPlace(id, 'X') == 0) // 0 means the place was successful.
     {
         std::cout << "Placed\n";
     } 
     else 
     {
         std::cout << "Not Placed\n";
-    }
-    
+    }    
 }

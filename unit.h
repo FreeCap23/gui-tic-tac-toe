@@ -1,22 +1,30 @@
-class Unit {
+class Unit
+{
 private:
     char state;
 public:
-    Unit() {
+    Unit()
+    {
         state = ' ';
     }
-    bool changeState(char newState) {
-        if (state == ' ') {
+    bool changeState(char newState)
+    {
+        if (state == ' ')
+        {
             state = newState;
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
-    char getState() {
+    char getState()
+    {
         return state;
     }
-    void reset() {
+    void reset()
+    {
         state = ' ';
     }
 };

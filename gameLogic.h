@@ -5,7 +5,8 @@ Unit unitArray[3][3];
 char symbol = 'X';
 int count = 0;
 
-int tryPlace(std::string cord, char symbol) {
+int tryPlace(std::string cord, char symbol)
+{
     int xCord, yCord;
     // Converts the string to int.
     std::stringstream ss;
@@ -14,7 +15,6 @@ int tryPlace(std::string cord, char symbol) {
     ss.clear();
     ss << cord.back();
     ss >> yCord;
-    // Return 2 means something is wrong with the coordinates.
     // Return 1 means that it couldn't place the symbol at the selected coord.
     // Return 0 means success.
     if (unitArray[xCord][yCord].changeState(symbol))
@@ -23,10 +23,13 @@ int tryPlace(std::string cord, char symbol) {
         return 1;
 }
 
-void render() {
+void render()
+{
     // Render the grid
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
             if (j == 2)
                 std::cout << "[" << unitArray[i][j].getState() << "]"
                           << std::endl;
@@ -36,7 +39,8 @@ void render() {
     }
 }
 
-void resetGame() {
+void resetGame()
+{
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
             unitArray[i][j].reset();
@@ -44,10 +48,14 @@ void resetGame() {
 
 bool checkWin() {
     // Checks for a win horizontally.
-    for (int x = 0; x < 3; x++) {
-        for (int y = 1; y < 3; y++) {
-            if (unitArray[x][y].getState() == unitArray[x][y-1].getState() && unitArray[x][y].getState() != ' ') {
-                if (unitArray[x][y+1].getState() == unitArray[x][y].getState()) {
+    for (int x = 0; x < 3; x++)
+    {
+        for (int y = 1; y < 3; y++)
+        {
+            if (unitArray[x][y].getState() == unitArray[x][y-1].getState() && unitArray[x][y].getState() != ' ')
+            {
+                if (unitArray[x][y+1].getState() == unitArray[x][y].getState())
+                {
                     render();
                     std::cout << unitArray[x][y].getState() << " won!";
                     return true;
@@ -56,10 +64,14 @@ bool checkWin() {
         }
     }
     // Checks for a win vertically.
-    for (int x = 1; x < 3; x++) {
-        for (int y = 0; y < 3; y++) {
-            if (unitArray[x][y].getState() == unitArray[x-1][y].getState() && unitArray[x][y].getState() != ' ') {
-                if (unitArray[x+1][y].getState() == unitArray[x][y].getState()) {
+    for (int x = 1; x < 3; x++)
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            if (unitArray[x][y].getState() == unitArray[x-1][y].getState() && unitArray[x][y].getState() != ' ')
+            {
+                if (unitArray[x+1][y].getState() == unitArray[x][y].getState())
+                {
                     render();
                     std::cout << unitArray[x][y].getState() << " won!";
                     return true;
@@ -73,7 +85,8 @@ bool checkWin() {
         (unitArray[0][0].getState() != ' ') || // This part checks for 1st diagonal
         (unitArray[0][2].getState() == unitArray[1][1].getState()) &&
         (unitArray[1][1].getState() == unitArray[2][0].getState()) &&
-        (unitArray[2][0].getState() != ' ')) { // This part checks for 2nd diagonal
+        (unitArray[2][0].getState() != ' ')) // This part checks for 2nd diagonal
+        {
         render();
         std::cout << unitArray[1][1].getState() << " won!";
         return true;
@@ -83,14 +96,17 @@ bool checkWin() {
     return false;
 }
 
-void logic() {
+void logic()
+{
     std::string position;
-    if (symbol == 'X') {
+    if (symbol == 'X')
+    {
         std::cout << "It is X's turn: ";
         std::cin >> position;
         std::cout << std::endl;
         int result = tryPlace(position, symbol);
-        if (result == 0){
+        if (result == 0)
+        {
             symbol = 'O';
             count++;
         }
@@ -98,7 +114,9 @@ void logic() {
             std::cout << "Place already taken, please choose another one. \n";
         else if (result == 2)
             std::cout << "Invalid coordinates.\n";
-    } else {
+    }
+    else
+    {
         std::cout << "It is O's turn: ";
         std::cin >> position;
         std::cout << std::endl;
@@ -110,7 +128,8 @@ void logic() {
         else if (result == 2)
             std::cout << "Invalid coordinates.\n";
     }
-    if (checkWin()) {
+    if (checkWin())
+    {
         count = 0;
         bool playAgain = false;
         std::string input;
@@ -123,7 +142,8 @@ void logic() {
         else
             exit(0);
     }
-    if (count == 9) {
+    if (count == 9)
+    {
         bool playAgain = false;
         std::string input;
         std::cout << std::endl << "It's a tie! Would you like to play again? y/n: ";
