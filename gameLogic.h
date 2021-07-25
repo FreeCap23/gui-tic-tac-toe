@@ -31,17 +31,11 @@ void resetGame()
 
 bool checkWin() {
     // Checks for a win horizontally.
-    for (int x = 0; x < 3; x++)
-    {
-        for (int y = 1; y < 3; y++)
-        {
-            if (unitArray[x][y].getState() == unitArray[x][y-1].getState()
-                && unitArray[x][y].getState() != ' ')
-            {
-                if (unitArray[x][y+1].getState() == unitArray[x][y].getState())
-                {
-                    return true;
-                }
+    for (int x = 0; x < 3; x++) {
+        if (unitArray[x][0].getState() == unitArray[x][1].getState()
+            && unitArray[x][0].getState() != ' ') {
+            if (unitArray[x][2].getState() == unitArray[x][0].getState()) {
+                return true;
             }
         }
     }
