@@ -4,8 +4,7 @@
 Unit unitArray[3][3];
 char symbol = 'X';
 
-int tryPlace(std::string cord, char symbol)
-{
+int tryPlace(std::string cord, char symbol) {
     int xCord, yCord;
     // Converts the string to int.
     std::stringstream ss;
@@ -22,8 +21,7 @@ int tryPlace(std::string cord, char symbol)
         return 1;
 }
 
-void resetGame()
-{
+void resetGame() {
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
             unitArray[i][j].reset();
@@ -40,15 +38,11 @@ bool checkWin() {
         }
     }
     // Checks for a win vertically.
-    for (int x = 1; x < 3; x++)
-    {
-        for (int y = 0; y < 3; y++)
-        {
+    for (int x = 1; x < 3; x++) {
+        for (int y = 0; y < 3; y++) {
             if (unitArray[x][y].getState() == unitArray[x-1][y].getState()
-                && unitArray[x][y].getState() != ' ')
-            {
-                if (unitArray[x+1][y].getState() == unitArray[x][y].getState())
-                {
+                && unitArray[x][y].getState() != ' ') {
+                if (unitArray[x+1][y].getState() == unitArray[x][y].getState()) {
                     return true;
                 }
             }
@@ -60,8 +54,7 @@ bool checkWin() {
         (unitArray[0][0].getState() != ' ') || // This part checks for 1st diagonal
         (unitArray[0][2].getState() == unitArray[1][1].getState()) &&
         (unitArray[1][1].getState() == unitArray[2][0].getState()) &&
-        (unitArray[2][0].getState() != ' ')) // This part checks for 2nd diagonal
-        {
+        (unitArray[2][0].getState() != ' ')) /* This part checks for 2nd diagonal */{
         return true;
     }
     // If there is no win, then every check will

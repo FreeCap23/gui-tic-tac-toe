@@ -1,15 +1,13 @@
 #ifndef __BASE_H
 #define __BASE_h
 
-class MainApp: public wxApp
-{
+class MainApp: public wxApp {
 public:
     virtual bool OnInit();
 };
 
 // Class of our window. Contains the window and all objects inside it
-class MainFrame: public wxFrame
-{
+class MainFrame: public wxFrame {
 public:
     MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
     wxMenuBar *MainMenu;
